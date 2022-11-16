@@ -36,6 +36,8 @@ const create = async (req, res) => {
 const list = async (req, res) => {
   const users = await connection(`users`).select(`*`);
 
+  users.forEach((user, index) => delete users[index].password);
+
   return res.status(200).json(users);
 };
 
